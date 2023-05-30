@@ -1,0 +1,12 @@
+  const renderNumberOptions = () => {
+    return numbers.map((number, index) => (
+      <div
+        key={index}
+        className="option"
+        draggable={!isChecking}
+        onDragStart={(event) => handleDragStart(event, number)}
+      >
+        {number}
+      </div>
+    ));
+  };

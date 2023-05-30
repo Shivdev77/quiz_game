@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Quiz Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this quiz game, 5 random numbers will be generated to the users. They have to sort them in ascending order.
 
-## Available Scripts
+## Components
 
-In the project directory, you can run:
+The Quiz Game consists of only a single component:
 
-### `npm start`
+### QuizGame
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The main component that renders the Quiz Game.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### State
 
-### `npm test`
+- `numbers`: An array of size 5 that consists of random numbers.
+- `userInput`: An array to store the user's input.
+- `isCorrect`: A boolean value indicating whether the user's input is correct or not.
+- `isChecking`: A boolean value indicating whether the user is currently checking their answer.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Functions
 
-### `npm run build`
+- `generateRandomNumbers()`: Generates an array of 5 unique random numbers.
+- `handleDragStart(event, value)`: Handles the drag start event when a number option is dragged.
+- `handleDragOver(event)`: Handles the drag over event that allows the users to drop a number.
+- `handleDrop(event, index)`: Handles the drop event when a number option is dropped into an input field.
+- `handleReset()`: Resets the game and generates another set of random numbers.
+- `handleCheck()`: To check if it is matching or not
+- `checkArraysEqual(arr1, arr2)`: Utility function to check if two arrays are equal.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Rendered Content
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Number options: Rendered as draggable elements representing the numbers the user can sort.
+- Input fields: Rendered as droppable elements where the user can drop the number options to sort them.
+- Result: Displayed as "Correct!" or "Wrong!" based on the correctness of the user's input.
+- Check button: Enabled when the user has filled all input fields and can be clicked to check the answer.
+- Reset button: Can be clicked to reset the game and start with new random numbers.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## How It Works
 
-### `npm run eject`
+1. When the Quiz Game component mounts, it generates a set of 5 random numbers using the `generateRandomNumbers` function and sets it in the `numbers` state.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. The user can drag the number options and drop them into the input fields.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. As the user drops a number option, the `handleDrop` function is called. It is to make sure that no repetition is done in dragging.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. The user needs to drag all the 5 numbers.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. Once the user has filled all input fields, the check button becomes enabled. Clicking the check button triggers the `handleCheck` function.
 
-## Learn More
+6. The `handleCheck` function compares the sorted `numbers` array with the sorted `userInput` array. If they are equal, it sets the `isCorrect` state to `true`, otherwise `false`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+7. The result is displayed as "Correct!" or "Wrong!" based on the `isCorrect` state.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+8. The user can click the reset button to generate new random numbers and clear the input, allowing them to play the game again.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
